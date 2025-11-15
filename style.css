@@ -1,0 +1,146 @@
+:root {
+    /* Кольори, які ви можете легко змінити */
+    --header-color: #28312a; /* Темно-зелений колір шапки */
+    --background-color: #28312a; /* Фон прелоадера */
+    --text-color: #66805f; /* Світлий текст для заголовку шапки */
+    --main-background: #bdcac2; /* Приємний, світлий фон для всього макета */
+}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    overflow: hidden; /* Приховуємо прокрутку під час анімації */
+} 
+
+/* ==================== 1. Прелоадер ==================== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loader-icon {
+    font-size: 100px;
+    color: white; 
+    animation: spin 0.9s linear forwards;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(540deg); }
+}
+#preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ==================== 2. Основний Контент (Анімація) ==================== */
+#main-content {
+    opacity: 0;
+    transform: translateY(150px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+#main-content.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================== 3. Шапка ==================== */
+.header {
+    width: 100%;
+    background-color: var(--header-color);
+    color: rgb(201, 214, 202);
+    padding: 90px;
+    text-align: left;
+    /* Заокруглені нижні кути */
+    border-radius: 0 0 25px 25px; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    position: relative;
+}
+.header h1 {
+    margin: 0;
+    font-size: 50px;
+    font-weight: 600;
+    color: var(--text-color);
+    text-shadow: 0 6px 12px rgb(0, 0, 0);
+    font-family: 'Varela Round', sans-serif;
+}
+
+/* ==================== 4. Макет (SIDEBAR + CONTENT) ==================== */
+.main-layout {
+    display: flex; 
+    min-height: calc(100vh - 180px); 
+    background-color: var(--main-background); 
+    /* Шрифт Comfortaa для всього контенту під шапкою */
+    font-family: 'Comfortaa', cursive; 
+}
+
+.sidebar {
+    width: 250px; 
+    background-color: #d8d8d8; 
+    padding: 20px;
+    color: rgb(50, 50, 50); 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    /* Збільшений розмір шрифту */
+    font-size: 1.1rem; 
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    color: #495057; 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 5px;
+}
+
+.vertical-divider {
+    width: 2px; /* Чорна і тонка */
+    height: 40%; 
+    background-color: #000000; 
+    border-radius: 999px; 
+    align-self: center; 
+    margin: 0 20px; 
+}
+
+.content {
+    flex-grow: 1; 
+    padding: 60px;
+    text-align: left;
+    font-size: 1.1rem; 
+    background-color: var(--main-background); 
+    color: rgb(50, 47, 51); 
+}
+
+/* ==================== 5. Стилі Галереї ==================== */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery a {
+    display: block; 
+    max-width: 180px; /* ЗМЕНШЕНИЙ РОЗМІР ЗОБРАЖЕНЬ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden; 
+    transition: transform 0.3s ease;
+}
+
+.gallery a:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-img {
+    width: 100%; 
+    height: auto; 
+    display: block;
+}
